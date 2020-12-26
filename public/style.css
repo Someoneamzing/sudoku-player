@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --board-width: min(50vw, 65vh);
+    --cell-size: calc(var(--board-width)/9);
+}
+
+html {
+    font-family: Arial, sans-serif;
+}
+
+#board {
+    display: grid;
+    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    width: var(--board-width);
+    min-height: var(--board-width);
+    margin: 4rem auto;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    user-select: none;
+}
+
+#board.won {
+    background-color: lightgreen;
+}
+
+.cell {
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+    text-align: center;
+    vertical-align: middle;
+    font-size: calc(var(--cell-size)/ 2);
+    cursor: pointer;
+    font-weight: normal;
+    position: relative;
+}
+
+
+
+.cell.debug-secondary {
+    background-color: rgb(166, 219, 202);
+}
+
+.cell.debug-target {
+    background-color: aquamarine;
+}
+
+.error .cell.debug-secondary {
+    background-color: rgb(219, 166, 166);
+}
+
+.error .cell.debug-target {
+    background-color: rgb(255, 127, 127);
+}
+
+.cell .notes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+.cell .cell-number {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20%;
+}
+
+.cell .note {
+    font-size: calc(110% / 3);
+    visibility: hidden;
+    color: grey;
+}
+
+.cell .note.shown {
+    visibility: visible;
+}
+
+.cell.highlight {
+    background: lightgrey;
+}
+
+.cell.locked {
+    font-weight: bold;
+}
+
+.cell.error {
+    background-color: lightcoral;
+}
+
+.cell:nth-child(3n) {
+    border-right: 2px solid black;
+}
+
+.cell:nth-child(n+19):nth-child(-n+27), .cell:nth-child(n+46):nth-child(-n+54), .cell:nth-child(n+73):nth-child(-n+81) {
+    border-bottom: 2px solid black;
+}
+
+#numbers {
+    width: calc(11 * var(--cell-size));
+    margin: auto;
+    margin-top: 3rem;
+}
+
+.number-button {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    outline: none;
+    border: none;
+}
+
+.number-button.selected {
+    background: grey;
+}
+
+#controls {
+    margin: 1rem auto;
+    width: fit-content;
+}
+
+.control {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: none;
+    outline: none;
+}
